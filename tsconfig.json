@@ -5,7 +5,8 @@
         "outDir": "./dist",
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
-        "strict": true
+        "strict": true,
+        "jsx": "react-jsx"
     },
     "include": ["**/*"],
     "exclude": ["node_modules", "dist"]
