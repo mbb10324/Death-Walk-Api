@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.db = void 0;
 const express_1 = __importDefault(require("express"));
+const root_mutations_1 = require("./mutations/root-mutations");
 const root_queries_1 = require("./queries/root-queries");
 const express_graphql_1 = require("express-graphql");
 const graphql_1 = require("graphql");
@@ -34,20 +35,20 @@ exports.db = (0, knex_1.default)({
 //define graphql db schema
 const schema = new graphql_1.GraphQLSchema({
     query: root_queries_1.RootQueryType,
-    // mutation: RootMutationType,
+    mutation: root_mutations_1.RootMutationType
 });
 //creates graphql connection
 app.use('/graphql', (0, express_graphql_1.graphqlHTTP)({ schema: schema, graphiql: true, }));
-//server running endpoint indicator
+//server running: endpoint indicator
 app.get('/', (req, res) => {
     res.send(`<div style="text-align:center;color:red;background-color:#252525;
     padding-top:10%;height:100%;font-family:courier,monospace"><h1>⚡️ Server 
     is running ⚡️</h1><br><br> <h2>This server establishes the Death Walk API,
     and <br>utilizes graphql at <a href='${endpoint}/graphql' style="color:
-    orange">${endpoint}/graphql</a></h2><br><br>Built with express+typescript
-    <br>Copyright (c) 2023 Death Walk</div>`);
+    orange">${endpoint}/graphql</a></h2><br><br><p>Built with express+typescript</p>
+    <p>Copyright (c) 2023 Death Walk</p></div>`);
 });
-//server running terminal indicator
+//server running: terminal indicator
 app.listen(port, () => {
     console.log(`⚡️ Server is running at ${endpoint} ⚡️`);
 });

@@ -1,40 +1,17 @@
 "use strict";
-// //mutates data
-// const RootMutationType = new GraphQLObjectType({
-//     name: "Mutation",
-//     description: "Root Mutation",
-//     fields: () => ({
-//         addBook: {
-//             type: BookType,
-//             description: "Add a book",
-//             args: {
-//                 name: { type: GraphQLNonNull(GraphQLString) },
-//                 authorId: { type: GraphQLNonNull(GraphQLInt) },
-//             },
-//             resolve: (_, args) => {
-//                 return db('books')
-//                     .insert({
-//                         name: args.name,
-//                         author_id: args.authorId,
-//                     })
-//                     .returning('*')
-//                     .then((rows) => rows[0]);
-//             },
-//         },
-//         addAuthor: {
-//             type: AuthorType,
-//             description: "Add an author",
-//             args: {
-//                 name: { type: GraphQLNonNull(GraphQLString) },
-//             },
-//             resolve: (_, args) => {
-//                 return db('authors')
-//                 .insert({
-//                     name: args.name,
-//                 })
-//                 .returning('*')
-//                 .then((rows) => rows[0]);
-//             },
-//         },
-//     }),
-// });
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RootMutationType = void 0;
+const graphql_1 = require("graphql");
+const user_mutations_1 = require("./user-mutations");
+const easy_mutations_1 = require("./easy-mutations");
+const medium_mutation_1 = require("./medium-mutation");
+const hard_mutations_1 = require("./hard-mutations");
+exports.RootMutationType = new graphql_1.GraphQLObjectType({
+    name: "Mutation",
+    fields: {
+        addUser: user_mutations_1.UserMutation,
+        addEasy: easy_mutations_1.EasyMutation,
+        addMedium: medium_mutation_1.MediumMutation,
+        addHard: hard_mutations_1.HardMutation
+    }
+});

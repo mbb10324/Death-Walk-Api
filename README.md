@@ -34,3 +34,7 @@ docker ps -a
 docker exec -it <Container-ID> bash
 psql -U postgres
 CREATE DATABASE library;
+
+## DEV NOTES
+
+- SELECT setval('hard_game_id_seq', (SELECT MAX(id) FROM hard_game));
