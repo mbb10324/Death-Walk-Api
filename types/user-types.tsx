@@ -1,8 +1,8 @@
 import { GraphQLInt, GraphQLObjectType, GraphQLString } from "graphql";
-import { db } from "..";
 import { EasyType } from "./easy-types";
 import { MediumType } from "./medium-types";
 import { HardType } from "./hard-types"
+import { db } from "..";
 
 export const UserType = new GraphQLObjectType({
     name: 'User',
