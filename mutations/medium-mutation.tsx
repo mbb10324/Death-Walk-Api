@@ -1,8 +1,9 @@
-import { GraphQLFieldConfig, GraphQLInt } from "graphql";
-import { db } from "..";
+import { MyGraphQLFieldConfig } from "../types/custom-fields";
 import { MediumType } from "../types/medium-types";
+import { GraphQLInt } from "graphql";
+import { db } from "..";
 
-export const MediumMutation: GraphQLFieldConfig<any, any> = {
+export const MediumMutation: MyGraphQLFieldConfig<any, any> = {
     type: MediumType,
     description: "Add medium scores to a user",
     args: {

@@ -1,10 +1,13 @@
-import { GraphQLFieldConfig, GraphQLInt } from "graphql";
+import { MyGraphQLFieldConfig } from "../types/custom-fields";
+import { userAuth } from "../helpers/auth-middleware";
 import { EasyType } from "../types/easy-types";
+import { GraphQLInt } from "graphql";
 import { db } from "..";
 
-export const EasyMutation: GraphQLFieldConfig<any, any> = {
+export const EasyMutation: MyGraphQLFieldConfig<any, any> = {
     type: EasyType,
     description: "Add easy scores to a user",
+    middleware: [userAuth],
     args: {
         user_id: { type: GraphQLInt },
         games: { type: GraphQLInt },
@@ -33,5 +36,5 @@ export const EasyMutation: GraphQLFieldConfig<any, any> = {
                 .returning('*');
             return newUser;
         }
-    }
+    },
 }

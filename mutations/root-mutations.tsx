@@ -3,6 +3,7 @@ import { UserMutation } from "./user-mutations";
 import { EasyMutation } from "./easy-mutations";
 import { MediumMutation } from "./medium-mutation";
 import { HardMutation } from "./hard-mutations";
+import { TokenMutation } from "./token-mutations";
 
 export const RootMutationType = new GraphQLObjectType({
     name: "Mutation",
@@ -10,6 +11,7 @@ export const RootMutationType = new GraphQLObjectType({
       addUser: UserMutation,
       addEasy: EasyMutation,
       addMedium: MediumMutation,
-      addHard: HardMutation
+      addHard: HardMutation,
+      deleteToken: TokenMutation
     }
   });

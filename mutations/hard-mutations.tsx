@@ -1,8 +1,9 @@
-import { GraphQLFieldConfig, GraphQLInt } from "graphql";
-import { db } from "..";
+import { MyGraphQLFieldConfig } from "../types/custom-fields";
 import { HardType } from "../types/hard-types";
+import { GraphQLInt } from "graphql";
+import { db } from "..";
 
-export const HardMutation: GraphQLFieldConfig<any, any> = {
+export const HardMutation: MyGraphQLFieldConfig<any, any> = {
     type: HardType,
     description: "Add hard scores to a user",
     args: {

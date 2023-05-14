@@ -1,6 +1,7 @@
 import { GraphQLFieldConfig, GraphQLString } from "graphql";
-import { db } from "..";
+import { hashPassword } from "../helpers/password-hashing";
 import { UserType } from "../types/user-types";
+import { db } from "..";
 
 export const UserMutation: GraphQLFieldConfig<any, any> = {
     type: UserType,
@@ -10,20 +11,17 @@ export const UserMutation: GraphQLFieldConfig<any, any> = {
         email: { type: GraphQLString },
         password: { type: GraphQLString }
     },
-    resolve: (_, args) => {
+    resolve: async (_, args) => {
         const { username, password, email } = args;
-        return db('users')
-            .where({ username, email })
-            .first()
-            .then((existingUser) => {
-                if (existingUser) {
-                    throw new Error('User already exists');
-                } else {
-                    return db('users')
-                        .insert({ username, password, email })
-                        .returning('*')
-                        .then((rows) => rows[0]);
-                }
-            });
+        const existingUser = await db('users').where({ username, email }).first();
+        if (existingUser) {
+            throw new Error('User already exists');
+        } else {
+            const hashedPassword = await hashPassword(password)
+            const [newUser] = await db('users')
+                .insert({ username, password: hashedPassword, email })
+                .returning('*');
+            return newUser;
+        }
     }
 }
