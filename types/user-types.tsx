@@ -30,5 +30,7 @@ export const UserType = new GraphQLObjectType({
                 return db('hard_game').where('user_id', user.id).first()
             }
         },
+        sanitizedUser: { type: GraphQLString },
+        token: { type: GraphQLString }
     })
 });

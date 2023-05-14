@@ -24,6 +24,16 @@ export const UserQueries: GraphQLFieldConfig<any, any> = {
         const sanitizedUser = sanitizeUser(user);
         const token = sign(sanitizedUser, JWT_SECRET);
         await db('tokens').insert({value: token});
-        return { user: sanitizedUser, token }
+        return { token }
     },
 }
+
+// export const IdentityQueries: GraphQLFieldConfig<any, any> = {
+//     type: UserType,
+//     description: 'Identity Check',
+//     args: {
+//         username: { type: GraphQLString },
+//         email: { type: GraphQLString },
+//     },
+//     resolve
+// }
