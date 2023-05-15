@@ -1,4 +1,5 @@
 import jwt, { GetPublicKeyOrSecret, Secret } from 'jsonwebtoken';
+import { Middleware } from '../types/custom-fields';
 import { db } from '..';
 
 export const JWT_SECRET: Secret | GetPublicKeyOrSecret = process.env.JWT_SECRET || 'shhhh'
@@ -8,7 +9,7 @@ const util = require('util')
 export const sign = util.promisify(jwt.sign)
 const verify = util.promisify(jwt.verify)
 
-export async function userAuth(req: any, res: any, next: any) {
+export const userAuth: Middleware = async (req, res, next) => {
     const token = req.headers.authorization?.replace('Bearer ', '');
     // Ensure a token is present.
     if (!token) {
@@ -35,8 +36,8 @@ type User = {
     username: string;
     email: string;
     password: string;
-  }
+}
 
-export function sanitizeUser({password, ...user}: User) {
+export function sanitizeUser({ password, ...user }: User) {
     return user;
 }

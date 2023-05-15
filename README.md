@@ -33,8 +33,9 @@ docker run --rm --name pg-docker -e POSTGRES_PASSWORD=docker -d -p 5432:5432 \
 docker ps -a
 docker exec -it <Container-ID> bash
 psql -U postgres
-CREATE DATABASE library;
+CREATE DATABASE death_walk;
 
 ## DEV NOTES
 
+- run this to fix primary key constraints. replace hard_game with table name
 - SELECT setval('hard_game_id_seq', (SELECT MAX(id) FROM hard_game));

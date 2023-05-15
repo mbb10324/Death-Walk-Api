@@ -3,12 +3,11 @@ import { RootMutationType } from './mutations/root-mutations';
 import { RootQueryType } from './queries/root-queries';
 import { graphqlHTTP } from 'express-graphql';
 import { GraphQLSchema } from 'graphql';
-import dotenv from 'dotenv';
 import knex from 'knex';
+import 'dotenv/config';
 
 //initialize environment vars
 /**********************************************************************************************/
-dotenv.config();
 const port = process.env.PORT
 
 //initialize express/cors
