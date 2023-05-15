@@ -1,4 +1,5 @@
 import { MyGraphQLFieldConfig } from "../types/custom-fields";
+import { userAuth } from "../helpers/auth-middleware";
 import { HardType } from "../types/hard-types";
 import { GraphQLInt } from "graphql";
 import { db } from "..";
@@ -6,6 +7,7 @@ import { db } from "..";
 export const HardMutation: MyGraphQLFieldConfig<any, any> = {
     type: HardType,
     description: "Add hard scores to a user",
+    middleware: [userAuth],
     args: {
         user_id: { type: GraphQLInt },
         games: { type: GraphQLInt },

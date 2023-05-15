@@ -1,5 +1,5 @@
 import { GraphQLObjectType } from "graphql";
-import { UserQueries } from "./user-queries";
+import { IdentityQueries, LoginQueries, UserQueries } from "./user-queries";
 import { UsersQueries } from "./users-queries";
 import { EasyQueries } from "./easy-queries";
 import { MediumQueries } from "./medium-queries";
@@ -10,8 +10,10 @@ export const RootQueryType: GraphQLObjectType = new GraphQLObjectType({
     fields: {
         user: UserQueries,
         users: UsersQueries,
+        login: LoginQueries,
         easyGames: EasyQueries,
         mediumGames: MediumQueries,
         hardGames: HardQueries,
+        identities: IdentityQueries
     }
 });
